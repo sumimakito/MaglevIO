@@ -6,7 +6,13 @@
 
     <groupId>groupId</groupId>
     <artifactId>MaglevIO</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.1</version>
 
-    
+    <properties>
+        <finalName>${project.artifactId}-${project.version}</finalName>
+    </properties>
+    <build>
+        <finalName>${finalName}</finalName>
+    </build>
+
 </project>

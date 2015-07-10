@@ -1,5 +1,12 @@
 language: java
-install: mvn install -DskipTests=true -Dgpg.skip=true
+before_install: mvn install -DskipTests=true -DfinalName=maglevio-$TRAVIS_TAG
 jdk:
-  - openjdk7
-  - oraclejdk8
+- openjdk7
+- oraclejdk8
+deploy:
+  provider: releases
+  api_key:
+    secure: W+g5LGzavbXubKrviczzhxv2ixXvKZy9wE0rkCAccK4S5Ovq5rdTRXBu4+y3JBhpE0+o2lxcMfAkiMWcEcEr0RoK/4GRa9xwNw/mEDsk1OQHaeIS/FEXDPgGfzYh0t1Bd477BVtF+C0zI1iyt2DIJRIE2Iat043bHC+k1W/iwaV1oHhlelb/PIQBM4CXR0Dws7xVJom0aZB4svWhzKZ/KByk+Wt2eBkEzrWaow+Xp9dHN2Plfr80yePvxSWAoq/lNDU16kT6pl3Gezkzu15QAM5ifxcJndCzNM8PhpbsIlqigGsfUBHz2KlfYW1/BLNqF57XdmBaqI3Qb/NLMBsz/1NBVyNiD9WsQcNni8iJ+gEI48cWjPhnt6oVBodnrwpIw0u4S2/omupsczQdq68gfoZmdVr2mmniBWINEY0FqrA0TXglPK1e7da0EuJmHxTkGf7x1kBMopdHCdtQwSV7CjHMSVhCq529JWjZmd7/p5K+a3D4VJLve8NJJC9rjW2WzK9SIihc/qQ6WFFJ3w5swAzBHIBFM6pjJTfS4tsX8sCW6fz0kFkmezVi8x+ivY+oKap90F1N8cbHLLUq1FN7edR308YPjqAUQJjSWc8JWMY1xd8L5EX6Wbx9FIMCxuZhhSbpLBZKlD3LrJnSH0bhiUJeFGSOkANyvmCN+rN+pp8=
+  file: target/maglevio-$TRAVIS_TAG.jar
+  on:
+    repo: SumiMakito/MaglevIO
