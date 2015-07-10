@@ -19,7 +19,7 @@ Each result is an average of 10 results. Unit: milliseconds(ms)
 Benchmark environment: MacBookPro with 256GB SSD (Core i5 Dual)
 
 | Block Size | IO(Read) | NIO-BFR(Read) | NIO-MappedBFR(Read) |
-| :------- |:---------------:| :-----------------:|
+| :------- |:---------------:| :-----------------:| :-----------------:|
 | 2K | 0.4 |	1.2 |	0.9 |
 | 64K	| 0.4 | 1.1 | 0.4 |
 | 256K | 0.8 | 1.2 | 0.8 |
