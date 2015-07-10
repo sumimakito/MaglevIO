@@ -21,5 +21,7 @@ deploy:
   on:
     repo: SumiMakito/MaglevIO
     tags: true
+branches:
+  except: /^(Snapshot).*$/
 script:
     ./script.sh
