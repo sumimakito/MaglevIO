@@ -1,8 +1,10 @@
 language: java
-before_install: mvn install -DskipTests=true -DfinalName=maglevio-$TRAVIS_TAG
+before_install:
+  - mvn install -DskipTests=true -DfinalName=maglevio-$TRAVIS_TAG
+  - chmod +x ./script.sh
 jdk:
-- openjdk7
-- oraclejdk8
+  - openjdk7
+  - oraclejdk8
 deploy:
   provider: releases
   api_key:
@@ -12,3 +14,5 @@ deploy:
   on:
     repo: SumiMakito/MaglevIO
     tags: true
+script:
+    ./script.sh
