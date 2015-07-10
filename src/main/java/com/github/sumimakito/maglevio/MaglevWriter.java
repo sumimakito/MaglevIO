@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2015 Sumi Makito
+ * Copyright 2014-2015 Sumi Makito & REINA Developing Group
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,10 +47,18 @@ public class MaglevWriter {
                     }
                 }
             }
+
+            public static void writeStringToFile(final String string, final String pFilePath) throws Exception {
+                writeBytesToFile(string.getBytes(), pFilePath);
+            }
+
+            public static void writeStringToFileWithCharset(final String string, final Charset charset, final String pFilePath) throws Exception {
+                writeBytesToFile(string.getBytes(charset.name()), pFilePath);
+            }
         }
 
         public static class MappedBFR {
-            public void writeBytesToFile(final byte[] bytes, final String pFilePath) throws IOException {
+            public static void writeBytesToFile(final byte[] bytes, final String pFilePath) throws IOException {
                 File file = new File(pFilePath);
                 RandomAccessFile raf = new RandomAccessFile(file, "rw");
                 raf.seek(raf.length());
@@ -60,11 +68,11 @@ public class MaglevWriter {
                 mbf.put(bytes);
             }
 
-            public void writeStringToFile(final String string, final String pFilePath) throws IOException {
+            public static void writeStringToFile(final String string, final String pFilePath) throws IOException {
                 writeBytesToFile(string.getBytes(), pFilePath);
             }
 
-            public void writeStringToFileWithCharset(final String string, final Charset charset, final String pFilePath) throws IOException {
+            public static void writeStringToFileWithCharset(final String string, final Charset charset, final String pFilePath) throws IOException {
                 writeBytesToFile(string.getBytes(charset.name()), pFilePath);
             }
         }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2015 Sumi Makito
+ * Copyright 2014-2015 Sumi Makito & REINA Developing Group
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ import java.nio.charset.MalformedInputException;
 public class MaglevReader {
 
     public static class IO {
-        public static String readStringFromFile(final String pFilePath) throws IOException {
+        public static String fileToString(final String pFilePath) throws IOException {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(pFilePath));
             StringBuilder sb = new StringBuilder();
             String rLine = null;
