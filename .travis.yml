@@ -20,7 +20,7 @@ deploy:
   skip_cleanup: true
   on:
     repo: SumiMakito/MaglevIO
-    tags: true
+    tags: false
 branches:
   except: /^(Snapshot).*$/
 script:
