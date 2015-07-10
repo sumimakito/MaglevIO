@@ -1,15 +1,21 @@
 language: java
 before_install:
-  - mvn install -DskipTests=true -DfinalName=MaglevIO-$TRAVIS_TAG
+  - export GITHUB_TAG=Snapshot_${TRAVIS_BRANCH}_Build.${TRAVIS_BUILD_NUMBER}
+  - mvn install -DskipTests=true -DfinalName=MaglevIO_${GITHUB_TAG}
   - chmod +x ./script.sh
 jdk:
   - openjdk7
   - oraclejdk8
+after_success:
+  - git config --global user.email "sumimaito@hotmail.com"
+  - git config --global user.name "SumiMakito"
+  - git tag $GITHUB_TAG
+  - git push --quiet https://$GITHUBKEY@github.com/SumiMakito/MaglevIO.git $GITHUB_TAG
 deploy:
   provider: releases
   api_key:
-    secure: W+g5LGzavbXubKrviczzhxv2ixXvKZy9wE0rkCAccK4S5Ovq5rdTRXBu4+y3JBhpE0+o2lxcMfAkiMWcEcEr0RoK/4GRa9xwNw/mEDsk1OQHaeIS/FEXDPgGfzYh0t1Bd477BVtF+C0zI1iyt2DIJRIE2Iat043bHC+k1W/iwaV1oHhlelb/PIQBM4CXR0Dws7xVJom0aZB4svWhzKZ/KByk+Wt2eBkEzrWaow+Xp9dHN2Plfr80yePvxSWAoq/lNDU16kT6pl3Gezkzu15QAM5ifxcJndCzNM8PhpbsIlqigGsfUBHz2KlfYW1/BLNqF57XdmBaqI3Qb/NLMBsz/1NBVyNiD9WsQcNni8iJ+gEI48cWjPhnt6oVBodnrwpIw0u4S2/omupsczQdq68gfoZmdVr2mmniBWINEY0FqrA0TXglPK1e7da0EuJmHxTkGf7x1kBMopdHCdtQwSV7CjHMSVhCq529JWjZmd7/p5K+a3D4VJLve8NJJC9rjW2WzK9SIihc/qQ6WFFJ3w5swAzBHIBFM6pjJTfS4tsX8sCW6fz0kFkmezVi8x+ivY+oKap90F1N8cbHLLUq1FN7edR308YPjqAUQJjSWc8JWMY1xd8L5EX6Wbx9FIMCxuZhhSbpLBZKlD3LrJnSH0bhiUJeFGSOkANyvmCN+rN+pp8=
-  file: target/MaglevIO-$TRAVIS_TAG.jar
+    secure: LdXNHVLhA2XoGRplJY7B/+jX4san2BvE1kNpQNSSflANL/IKF+8gFv9TDV6CJyFfSSpNmprnBfqYvsZBwuxDsWQ14WJcGROWfBXPgCuPYh+48cRxfyuMfTjmAnYaupe9KqME/VhnSyn8kstw0/7zbYQALehdpjIRvuV5l5OuC5K38WJibzHsC+TRTe6+nbkXxfz1cXdPq8SZhddhL9wYQppDG2TG72mZ7zpIW6Ein5o+rQ5w5+WfOuMVf+42pbUjSu4ha+QwGZF9eWSQGQwUcgBvmtx/V5v2yJJCJbs9+HlmQ+j4JFZTuG3uekkW23AVEvYW6OJ4Hy8E7sGk2xUKm71DlfLG82GcLEKGiK43aa4Y4A00NrH+em+6F24RH6PERXQtRzBV9v3x2RQqdTkCl52AMceL0p1fR56aYQQARitJuiLcUkCtGI3yRTZEOJcjAZr1NZgqOWcOmda97pNG6U41wDrsDKnykV91aFhUO7llTE1OzhtXHqptOxazl+jy8BRckJE8cnj1LKsHWSfU5Z82IMSgdWwQuxzSVKlE3B2Y0Z7xtoHcd1cxRvNlmICjNgyQpyHqPI4BEIFd/flBe2MunkN2ka0kJU0B4qfskBHxq5qGtDDTb3of/wd9y1GHFOSp7d3/vCq62vEkJdO1Joe5JqVixUg9p3mSQJ+uHMc=
+  file: target/MaglevIO_${GITHUB_TAG}.jar
   skip_cleanup: true
   on:
     repo: SumiMakito/MaglevIO
