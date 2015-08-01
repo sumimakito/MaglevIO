@@ -1,6 +1,8 @@
 *.class
 local.properties
 .DS_Store
+.idea/*
+*.MF
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
