@@ -58,8 +58,11 @@ public class MaglevWriter {
         }
 
         public static class MappedBFR {
-            public static void writeBytesToFile(final byte[] bytes, final String pFilePath) throws IOException {
-                File file = new File(pFilePath);
+            public static void writeBytesToFile(final byte[] bytes, final String pFilePath, boolean isAppend) throws IOException {
+                final File file = new File(pFilePath);
+                if(!isAppend){
+                    file.delete();
+                }
                 RandomAccessFile raf = new RandomAccessFile(file, "rw");
                 raf.seek(raf.length());
                 FileChannel fc = raf.getChannel();
@@ -68,12 +71,20 @@ public class MaglevWriter {
                 mbf.put(bytes);
             }
 
-            public static void writeStringToFile(final String string, final String pFilePath) throws IOException {
-                writeBytesToFile(string.getBytes(), pFilePath);
+            public static void writeBytesToFile(final byte[] bytes, final String pFilePath) throws IOException {
+                writeBytesToFile(bytes, pFilePath, false);
             }
 
-            public static void writeStringToFileWithCharset(final String string, final Charset charset, final String pFilePath) throws IOException {
-                writeBytesToFile(string.getBytes(charset.name()), pFilePath);
+            public static void writeStringToFile(final String string, final String pFilePath) throws IOException {
+                writeBytesToFile(string.getBytes(), pFilePath, false);
+            }
+
+            public static void writeStringToFile(final String string, final String pFilePath, boolean isAppend) throws IOException {
+                writeBytesToFile(string.getBytes(), pFilePath, isAppend);
+            }
+
+            public static void writeStringToFileWithCharset(final String string, final Charset charset, final String pFilePath, boolean isAppend) throws IOException {
+                writeBytesToFile(string.getBytes(charset.name()), pFilePath, isAppend);
             }
         }
     }

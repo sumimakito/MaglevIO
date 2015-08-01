@@ -11,7 +11,7 @@ after_success:
   - git config --global user.name "SumiMakito"
   - export GITHUB_TAG=Snapshot_${TRAVIS_BRANCH}_Build.${TRAVIS_BUILD_NUMBER}
   - git tag ${GITHUB_TAG}
-  - git push --quiet https://${GITHUBKEY}@github.com/SumiMakito/MaglevIO.git ${GITHUB_TAG}
+  - git push --quiet https://${GITHUB_KEY}@github.com/SumiMakito/MaglevIO.git ${GITHUB_TAG}
 deploy:
   provider: releases
   api_key:
